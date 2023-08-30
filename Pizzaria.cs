@@ -56,7 +56,7 @@ namespace AppRabioButton
             foreach (System.Windows.Forms.CheckBox checkbox in checkboxes)
             {
                 if (checkbox.Checked)
-                {
+                { 
                     checkboxesChecadas.Add(checkbox);
                 }
             }
