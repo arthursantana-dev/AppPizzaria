@@ -53,21 +53,32 @@ namespace AppRabioButton
             List<System.Windows.Forms.CheckBox> checkBoxes = new List<System.Windows.Forms.CheckBox>();
             List<System.Windows.Forms.CheckBox> checkboxesChecadas = checkBoxes;
 
+            List<double> precoProdutosEscolhidos = new List<double>();
+
             foreach (System.Windows.Forms.CheckBox checkbox in checkboxes)
             {
                 if (checkbox.Checked)
-                { 
+                {
                     checkboxesChecadas.Add(checkbox);
                 }
             }
 
             checkboxesChecadas.ToArray();
 
+
             foreach (System.Windows.Forms.CheckBox checkbox in checkboxesChecadas)
             {
                 int i = Array.IndexOf(checkboxes, checkbox);
-                
+
+
+                precoProdutosEscolhidos.Add(precos[i]);
             }
+
+            foreach (double preco in precoProdutosEscolhidos)
+            {
+                Console.WriteLine($"{preco}");
+            }
+            
 
         }
 
@@ -94,6 +105,11 @@ namespace AppRabioButton
                 //Console.WriteLine(i + ": " + labelPrecos[i] + " " + precos[i]);
                 labelPrecos[i].Text = $"R${precos[i]}";
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }
