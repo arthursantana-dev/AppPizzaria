@@ -54,6 +54,12 @@ namespace AppRabioButton
             List<System.Windows.Forms.CheckBox> checkboxesChecadas = checkBoxes;
 
             List<double> precoProdutosEscolhidos = new List<double>();
+            List<string> nomeProdutosEscolhidos = new List<string> ();
+
+            string nomeCliente = textBox1.Text;
+            double precoTotal = 0;
+
+            string textoFatura = "";
 
             foreach (System.Windows.Forms.CheckBox checkbox in checkboxes)
             {
@@ -69,15 +75,25 @@ namespace AppRabioButton
             foreach (System.Windows.Forms.CheckBox checkbox in checkboxesChecadas)
             {
                 int i = Array.IndexOf(checkboxes, checkbox);
-
-
                 precoProdutosEscolhidos.Add(precos[i]);
+                nomeProdutosEscolhidos.Add(checkbox.Text);
+
+                precoTotal += precos[i];
             }
 
-            foreach (double preco in precoProdutosEscolhidos)
+
+            //foreach (double preco in precoProdutosEscolhidos)
+            //{
+            //    Console.WriteLine($"{preco}");
+            //}
+
+            for(int i = 0; i < precoProdutosEscolhidos.Count; i++)
             {
-                Console.WriteLine($"{preco}");
+                textoFatura += $"{String.Format("{0:C}", precoProdutosEscolhidos[i])} {nomeProdutosEscolhidos[i]}\n";
+            
             }
+
+            MessageBox.Show($"{nomeCliente}, \n{textoFatura} \n -------------------- \n Total: {String.Format("{0:C}", precoTotal)}", "Fatura");
             
 
         }
@@ -101,7 +117,7 @@ namespace AppRabioButton
 
             for (int i = 0; i < labelPrecos.Length; i++)
             {
-                Console.WriteLine($"{precos.Length}, {labelPrecos.Length}");
+                //Console.WriteLine($"{precos.Length}, {labelPrecos.Length}");
                 //Console.WriteLine(i + ": " + labelPrecos[i] + " " + precos[i]);
                 labelPrecos[i].Text = $"R${precos[i]}";
             }
